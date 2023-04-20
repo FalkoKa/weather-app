@@ -1,0 +1,11 @@
+.weather-details {
+  border: 1px solid black;
+}
+
+.weather-details p {
+  margin: 0;
+}
+
+.weather-details div {
+  margin: 10px;
+}

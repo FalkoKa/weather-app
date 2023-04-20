@@ -23,7 +23,6 @@ const Weather = (props) => {
   // }, []);
 
   useEffect(() => {
-    console.log(dataSydney);
     setData(dataSydney);
   }, []);
 
@@ -31,9 +30,9 @@ const Weather = (props) => {
     <div>
       <h1>Weather</h1>
       <Search />
-      <Forecast data={data} />
-      <WeatherDetails data={data} />
-      <WeatherInfo data={data} />
+      {data && <Forecast data={data} />}
+      {data && <WeatherDetails data={data} />}
+      {data && <WeatherInfo data={data} />}
     </div>
   );
 };
