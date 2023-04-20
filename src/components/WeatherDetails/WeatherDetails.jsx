@@ -1,12 +1,6 @@
 import './WeatherDetails.css';
-
-const kelvinToCelsius = (kelvin) => {
-  return `${(kelvin - 273.15).toFixed(1)} °C`;
-};
-
-const milesToKilometer = (miles) => {
-  return (miles * 1.609).toFixed(1);
-};
+import kelvinToCelsius from '../../utils/converter/kelvinToCelsius';
+import milesToKilometer from '../../utils/converter/milesToKilometer';
 
 const WeatherDetails = ({ data }) => {
   return (

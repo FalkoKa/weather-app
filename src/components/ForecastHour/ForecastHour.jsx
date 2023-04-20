@@ -1,6 +1,4 @@
-const kelvinToCelsius = (kelvin) => {
-  return `${(kelvin - 273.15).toFixed(1)} °C`;
-};
+import kelvinToCelsius from '../../utils/converter/kelvinToCelsius';
 
 const ForecastHour = ({ data }) => {
   return (
