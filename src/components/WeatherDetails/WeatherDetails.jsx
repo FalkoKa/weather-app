@@ -19,10 +19,16 @@ const WeatherDetails = ({ data }) => {
         <span>{data.current.humidity} %</span>
       </div>
 
-      <div className="chance-of-rain">
-        <p>{<FaCloudShowersHeavy size={20} />} Chance of Rain</p>
-        <span>{data.current.rain['1h'] * 100} %</span>
-      </div>
+      {/* {console.log(data)}
+
+      {data.current.rain !== 'undefined' ? (
+        <div className="chance-of-rain">
+          <p>{<FaCloudShowersHeavy size={20} />} Chance of Rain</p>
+          <span>{data.current.rain['1h'] * 100} %</span>
+        </div>
+      ) : (
+        ''
+      )} */}
 
       <div className="wind-speed">
         <p>{<MdOutlineWindPower size={20} />} Wind Speed</p>
