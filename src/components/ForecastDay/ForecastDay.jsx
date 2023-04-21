@@ -1,15 +1,16 @@
 import kelvinToCelsius from '../../utils/converter/kelvinToCelsius';
 import iconPicker from './../../utils/iconPicker';
+import setDays from '../../utils/converter/setDays';
 
 const ForecastDay = ({ data }) => {
   return (
     <div className="forecast-day">
-      <h3>day...</h3>
-      {iconPicker(data.weather[0].main, 30)}
-      <p>day: {kelvinToCelsius(data.temp.day)}</p>
-      <p>night: {kelvinToCelsius(data.temp.night)}</p>
-      <p>min: {kelvinToCelsius(data.temp.min)}</p>
-      {console.log(data)}
+      <h4>{setDays(data.dt)}</h4>
+      <span className="weather-icon">
+        {iconPicker(data.weather[0].main, 30)}
+      </span>
+      <p className="day">{kelvinToCelsius(data.temp.day)}</p>
+      <p className="night">{kelvinToCelsius(data.temp.night)}</p>
     </div>
   );
 };
