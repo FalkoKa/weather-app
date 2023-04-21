@@ -1,4 +1,6 @@
+import "./Map.css";
+
 const Map = () => {
-  return <div>Map</div>;
+  return <div id="windy"></div>;
 };
 export default Map;

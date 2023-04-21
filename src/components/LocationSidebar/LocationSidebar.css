@@ -1,0 +1,50 @@
+.location-sidebar {
+  flex: 1;
+  position: relative;
+  background: rgba(37, 67, 81, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(37, 67, 81, 0.23);
+  padding: 80px 40px;
+  font-family: "Roboto", sans-serif;
+}
+
+.search-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d66c06;
+}
+
+.home-cities {
+  margin-top: 50px;
+  color: #fff;
+}
+
+.home-city {
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-city p,
+span {
+  flex: 1;
+}
+
+.city-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
