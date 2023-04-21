@@ -1,12 +1,12 @@
-import Forecast from '../../components/Forecast/Forecast';
-import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
-import WeatherInfo from '../../components/WeatherInfo/WeatherInfo';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import dataSydney from '../../dataSydney.json';
-import './Weather.css';
-import Map from '../../components/Map/Map';
-import { useGlobalContext } from '../../hooks/context';
+import Forecast from "../../components/Forecast/Forecast";
+import WeatherDetails from "../../components/WeatherDetails/WeatherDetails";
+import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import dataSydney from "../../dataSydney.json";
+import "./Weather.css";
+import Map from "../../components/Map/Map";
+import { useGlobalContext } from "../../hooks/context";
 
 const Weather = (props) => {
   const [data, setData] = useState(null);
@@ -26,7 +26,7 @@ const Weather = (props) => {
   // }, []);
 
   useEffect(() => {
-    if (city !== '') {
+    if (city !== "") {
       axios
         .get(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GOOGLE_API}`
