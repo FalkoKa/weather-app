@@ -1,10 +1,10 @@
 import Forecast from '../../components/Forecast/Forecast';
 import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
 import WeatherInfo from '../../components/WeatherInfo/WeatherInfo';
-import Search from '../../components/Search/Search';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dataSydney from '../../dataSydney.json';
+import './Weather.css';
 
 const Weather = (props) => {
   const [data, setData] = useState(null);
@@ -27,12 +27,10 @@ const Weather = (props) => {
   }, []);
 
   return (
-    <div>
-      <h1>Weather</h1>
-      <Search />
-      {data && <Forecast data={data} />}
-      {data && <WeatherDetails data={data} />}
+    <div className="weather">
       {data && <WeatherInfo data={data} />}
+      {data && <WeatherDetails data={data} />}
+      {data && <Forecast data={data} />}
     </div>
   );
 };

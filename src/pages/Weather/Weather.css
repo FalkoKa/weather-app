@@ -1,0 +1,19 @@
+.weather {
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'info . details' 'forecast forecast forecast';
+  padding: 30px;
+}
+
+.weather-info {
+  grid-area: info;
+}
+
+.weather-details {
+  grid-area: details;
+}
+
+.forecast {
+  grid-area: forecast;
+}
