@@ -1,10 +1,10 @@
-import Forecast from '../../components/Forecast/Forecast';
-import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
-import WeatherInfo from '../../components/WeatherInfo/WeatherInfo';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import dataSydney from '../../dataSydney.json';
-import './Weather.css';
+import Forecast from "../../components/Forecast/Forecast";
+import WeatherDetails from "../../components/WeatherDetails/WeatherDetails";
+import WeatherInfo from "../../components/WeatherInfo/WeatherInfo";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import dataSydney from "../../dataSydney.json";
+import "./Weather.css";
 
 const Weather = (props) => {
   const [data, setData] = useState(null);

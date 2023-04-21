@@ -1,17 +1,22 @@
 import "./LocationSidebar.css";
-import { FaSearchLocation, FaRegWindowClose } from "react-icons/fa";
-import { BiSearchAlt2 } from "react-icons/bi";
+import { FaSearchLocation } from "react-icons/fa";
 import Search from "../Search/Search";
 import { useGlobalContext } from "../../hooks/context";
-import { useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
+import HomeTemp from "../HomeTemp/HomeTemp";
 
 const LocationSidebar = () => {
-  const { locations, city } = useGlobalContext();
+  const { locations, setLocations } = useGlobalContext();
 
-  //const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+  const { temp } = useFetch();
 
-  console.log(city);
-  console.log(locations);
+  const handleDelete = (idx) => {
+    setLocations(
+      locations.filter((l, index) => {
+        return index !== idx;
+      })
+    );
+  };
 
   return (
     <div className="location-sidebar">
@@ -19,17 +24,15 @@ const LocationSidebar = () => {
         <FaSearchLocation size={36} />
       </div>
       <Search />
-
       <div className="home-cities">
         {locations.map((city, index) => (
-          <div className="city-wrapper" key={index}>
-            <FaRegWindowClose size={24} />
-            <div className="home-city">
-              <p>{city}</p>
-              <span>20 °C</span>
-              <BiSearchAlt2 size={24} />
-            </div>
-          </div>
+          <HomeTemp
+            city={city}
+            key={index}
+            temp={temp}
+            index={index}
+            onDelete={handleDelete}
+          />
         ))}
       </div>
     </div>
