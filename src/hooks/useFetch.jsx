@@ -8,8 +8,6 @@ const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  console.log(locations.length);
-
   const { city, setAlert } = useGlobalContext();
 
   useEffect(() => {
@@ -27,15 +25,20 @@ const useFetch = () => {
             const { data: weather } = await axios.get(
               `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_OPENWEATHERMAP_KEY}`
             );
-            setLocations((prevLocations) => [
-              ...prevLocations,
-              {
-                id: id + 1,
-                city,
-                temp: weather?.main?.temp,
-              },
-            ]);
-            setId((prevId) => prevId + 1);
+            const hasCity = locations.find(
+              (location) => location.city === city
+            );
+            if (!hasCity) {
+              setLocations((prevLocations) => [
+                ...prevLocations,
+                {
+                  id: id + 1,
+                  city,
+                  temp: weather?.main?.temp,
+                },
+              ]);
+              setId((prevId) => prevId + 1);
+            }
             timeoutId = setTimeout(fetchTemperature, 3600000);
           } catch (err) {
             setHasError(true);
@@ -55,10 +58,18 @@ const useFetch = () => {
   }, [city]);
 
   useEffect(() => {
-    localStorage.setItem("locations", JSON.stringify(locations));
+    if (locations.length > 0) {
+      localStorage.setItem("locations", JSON.stringify(locations));
+    }
   }, [locations]);
 
-  //const storedLocations = JSON.parse(localStorage.getItem("locations"));
+  useEffect(() => {
+    const storedLocations = JSON.parse(localStorage.getItem("locations"));
+    if (storedLocations) {
+      setLocations(storedLocations);
+      //setId(storedLocations.length);
+    }
+  }, []);
 
   return { isLoading, hasError };
 };

@@ -22,6 +22,12 @@ const LocationSidebar = () => {
         return location.id !== id;
       })
     );
+    if (locations.length === 1) {
+      localStorage.clear();
+    } else {
+      localStorage.setItem("locations", JSON.stringify(locations));
+    }
+
     setAlert(false);
   };
 
