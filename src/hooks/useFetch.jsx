@@ -8,7 +8,7 @@ const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const { city, setAlert } = useGlobalContext();
+  const { city, setAlert, setWeather } = useGlobalContext();
 
   useEffect(() => {
     let timeoutId;
@@ -39,6 +39,7 @@ const useFetch = () => {
               ]);
               setId((prevId) => prevId + 1);
             }
+            setWeather(weather);
             timeoutId = setTimeout(fetchTemperature, 3600000);
           } catch (err) {
             setHasError(true);
