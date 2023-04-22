@@ -8,10 +8,20 @@ const AppContext = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [city, setCity] = useState("");
   const [alert, setAlert] = useState(false);
+  const [weather, setWeather] = useState({});
 
   return (
     <GlobalContext.Provider
-      value={{ locations, setLocations, setCity, city, alert, setAlert }}
+      value={{
+        locations,
+        setLocations,
+        setCity,
+        city,
+        alert,
+        setAlert,
+        weather,
+        setWeather,
+      }}
     >
       {children}
     </GlobalContext.Provider>
