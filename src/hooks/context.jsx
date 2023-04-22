@@ -7,9 +7,12 @@ export const useGlobalContext = () => useContext(GlobalContext);
 const AppContext = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [city, setCity] = useState("");
+  const [alert, setAlert] = useState(false);
 
   return (
-    <GlobalContext.Provider value={{ locations, setLocations, setCity, city }}>
+    <GlobalContext.Provider
+      value={{ locations, setLocations, setCity, city, alert, setAlert }}
+    >
       {children}
     </GlobalContext.Provider>
   );

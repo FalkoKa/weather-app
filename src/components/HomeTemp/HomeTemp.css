@@ -1,0 +1,7 @@
+.home-city a {
+  color: white;
+}
+
+.city-wrapper > svg {
+  cursor: pointer;
+}
