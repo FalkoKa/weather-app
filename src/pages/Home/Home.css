@@ -2,3 +2,24 @@
   display: flex;
   height: 100vh;
 }
+
+@media (max-width: 1200px) {
+  .home-container {
+    flex-direction: column;
+  }
+
+  #windy {
+    min-height: 400px;
+    flex: auto;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .search-icon {
+    width: 70px;
+    height: 70px;
+  }
+  .home-city p {
+    font-size: 14px;
+  }
+}

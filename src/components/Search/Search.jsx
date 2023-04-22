@@ -32,7 +32,7 @@ export default function GoogleMaps() {
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
 
-  const { locations, setLocations, setCity } = useGlobalContext();
+  const { setCity } = useGlobalContext();
 
   if (typeof window !== "undefined" && !loaded.current) {
     if (!document.querySelector("#google-maps")) {
@@ -109,7 +109,6 @@ export default function GoogleMaps() {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
         if (newValue) {
-          setLocations([newValue.description, ...locations]);
           setCity(newValue.description);
         }
       }}
