@@ -2,8 +2,9 @@
   font-family: 'Roboto', sans-serif;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: 'info . details' 'forecast forecast forecast';
+  grid-template-areas: 'info . details' 'forecast forecast forecast' 'babymode babymode babymode';
   padding: 30px;
+  gap: 10px;
 }
 
 .weather-info {
@@ -16,4 +17,8 @@
 
 .forecast {
   grid-area: forecast;
+}
+
+.baby-mode {
+  grid-area: babymode;
 }
