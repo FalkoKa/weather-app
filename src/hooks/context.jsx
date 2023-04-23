@@ -8,7 +8,6 @@ const AppContext = ({ children }) => {
   const [locations, setLocations] = useState([]);
   const [city, setCity] = useState("");
   const [alert, setAlert] = useState(false);
-  const [weather, setWeather] = useState({});
 
   return (
     <GlobalContext.Provider
@@ -19,8 +18,6 @@ const AppContext = ({ children }) => {
         city,
         alert,
         setAlert,
-        weather,
-        setWeather,
       }}
     >
       {children}

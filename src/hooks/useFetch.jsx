@@ -4,11 +4,10 @@ import axios from "axios";
 
 const useFetch = () => {
   const { locations, setLocations } = useGlobalContext();
-  const [id, setId] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const { city, setAlert, setWeather } = useGlobalContext();
+  const { city, setAlert } = useGlobalContext();
 
   useEffect(() => {
     let timeoutId;
@@ -25,21 +24,29 @@ const useFetch = () => {
             const { data: weather } = await axios.get(
               `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_OPENWEATHERMAP_KEY}`
             );
-            const hasCity = locations.find(
-              (location) => location.city === city
-            );
+            const cityName = city.split(",")[0].split(" ")[0].toLowerCase();
+
+            const hasCity = locations.find((location) => {
+              return (
+                location.city.split(",")[0].split(" ")[0].toLowerCase() ===
+                cityName
+              );
+            });
+
             if (!hasCity) {
               setLocations((prevLocations) => [
                 ...prevLocations,
                 {
-                  id: id + 1,
+                  id: locations.length + 1,
                   city,
                   temp: weather?.main?.temp,
+                  max: weather?.main?.temp_max,
+                  min: weather?.main?.temp_min,
+                  description: weather?.weather[0]?.description,
                 },
               ]);
-              setId((prevId) => prevId + 1);
             }
-            setWeather(weather);
+
             timeoutId = setTimeout(fetchTemperature, 3600000);
           } catch (err) {
             setHasError(true);
@@ -68,7 +75,6 @@ const useFetch = () => {
     const storedLocations = JSON.parse(localStorage.getItem("locations"));
     if (storedLocations) {
       setLocations(storedLocations);
-      //setId(storedLocations.length);
     }
   }, []);
 
