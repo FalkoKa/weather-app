@@ -9,9 +9,9 @@ export default function EmailTest({ settings, cold, hour }) {
       const date = new Date();
       if (
         settings.remind &&
-        date.getHours() === 14 &&
-        date.getMinutes() === 54 &&
-        date.getSeconds() === 40
+        date.getHours() === settings.remindTime &&
+        date.getMinutes() === 1 &&
+        date.getSeconds() === 1
       ) {
         emailjs
           .send(
@@ -31,24 +31,8 @@ export default function EmailTest({ settings, cold, hour }) {
       }
 
       setTime(date.toTimeString());
-    }, 1000);
+    }, 990);
   }, []);
 
   return <div className="email-test">{time}</div>;
 }
-
-// emailjs
-//           .send(
-//             'service_jl6cwrk',
-//             'template_rc57opn',
-//             {
-//               from_name: 'Weather App',
-//               to_name: settings.name,
-//               email: settings.email,
-//               temp: cold,
-//               time: hour,
-//             },
-//             'S3jaS_noYO-uFHLvl'
-//           )
-//           .then((res) => console.log(res))
-//           .catch((err) => console.log(err));

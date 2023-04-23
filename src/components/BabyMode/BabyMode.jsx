@@ -13,7 +13,7 @@ export default function BabyMode({ data }) {
     remindTime: 20,
     email: 'falkokammel@gmx.de',
     name: 'Falko',
-    remind: true,
+    remind: isReminding, // is that possible?
   });
 
   const changeBabyMode = (e) => {
@@ -24,7 +24,7 @@ export default function BabyMode({ data }) {
 
   const changeIsReminding = (e) => {
     setIsReminding(!isReminding);
-    setSettings({ ...settings, remind: true });
+    setSettings({ ...settings, remind: true }); // or need to do it this way?
   };
 
   const handleSubmit = (e) => {
@@ -108,7 +108,7 @@ export default function BabyMode({ data }) {
                 </p>
                 <div className="reminder-checkbox">
                   <input
-                    onChange={changeIsReminding}
+                    onChange={changeIsReminding} // can have another function to set settings true or false when ticking?
                     type="checkbox"
                     id="reminder"
                   />
@@ -121,10 +121,10 @@ export default function BabyMode({ data }) {
                     <label htmlFor="reminder-time">Reminder Time: </label>
                     <select
                       onChange={handleInput}
-                      name="reminderTime"
+                      name="remindTime"
                       id="reminder-time"
                     >
-                      <option selected value="8 pm">
+                      <option selected value={8}>
                         8 pm
                       </option>
                       <option value={21}>9 pm</option>
@@ -138,7 +138,13 @@ export default function BabyMode({ data }) {
 
                   <div className="name">
                     <label htmlFor="name">Enter your name</label>
-                    <input type="text" maxLength={10} minLength={1} />
+                    <input
+                      onChange={handleInput}
+                      name="name"
+                      type="text"
+                      maxLength={10}
+                      minLength={1}
+                    />
                   </div>
 
                   <div className="contact-info">
