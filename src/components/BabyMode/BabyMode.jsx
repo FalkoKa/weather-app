@@ -11,14 +11,16 @@ export default function BabyMode({ data }) {
   const [settings, setSettings] = useState({
     bedtime: 19,
     remindTime: 20,
-    email: 'falkokammel@gmx.de',
-    name: 'Falko',
-    remind: true,
+    email: '',
+    name: '',
+    remind: false,
   });
 
   const changeBabyMode = (e) => {
     setIsBabyMode(!isBabyMode);
     setIsSaved(false);
+    setIsReminding(false);
+    setSettings({ ...settings, remind: false });
   };
 
   const changeIsReminding = (e) => {
@@ -49,32 +51,24 @@ export default function BabyMode({ data }) {
   };
 
   const tempDropBy = (data, bedtime, coldestTemp) => {
+    console.log(bedtime);
     let tempAtBedtime = data.filter(
       (hour) => new Date(hour.dt * 1000).getHours() === bedtime
     )[0];
+    console.log('tempatbedtime');
+    console.log(tempAtBedtime);
     return `${(tempAtBedtime.temp - 273.15 - (coldestTemp - 273.15)).toFixed(
       2
     )} °C`;
   };
 
-  // coldest temperature between 11pm and 6am
-  console.log(kelvinToCelsius(coldestTemperature(nightData).temp));
-
-  // time of coldest temperature
-  console.log(
-    new Date(coldestTemperature(nightData).dt * 1000).getHours() + ' am'
-  );
-
-  console.log(coldestTemperature(nightData));
-
   // drop by how many degrees
-  console.log(
-    tempDropBy(data, settings.bedtime, coldestTemperature(nightData).temp)
-  );
+  // console.log(
+  //   tempDropBy(data, settings.bedtime, coldestTemperature(nightData).temp)
+  // );
 
   return (
     <div className="baby-mode">
-      {console.log(settings)}
       <EmailTest
         settings={settings}
         cold={kelvinToCelsius(coldestTemperature(nightData).temp)}
@@ -97,9 +91,7 @@ export default function BabyMode({ data }) {
                     name="bedtime"
                     id="bedtime"
                   >
-                    <option defaultValue={7} value={7}>
-                      7 pm
-                    </option>
+                    <option value={19}>7 pm</option>
                     <option value={20}>8 pm</option>
                     <option value={21}>9 pm</option>
                     <option value={22}>10 pm</option>
@@ -109,13 +101,16 @@ export default function BabyMode({ data }) {
                 </div>
 
                 <p>
-                  coldest temperature tonight will drop X (degeree(8pm) -
-                  degree(coldest)) degrees to just X (degree(coldest)) degrees
-                  at Xam
+                  coldest temperature tonight will drop by{' '}
+                  {tempDropBy(data, 19, coldestTemperature(nightData).temp)} to
+                  just {kelvinToCelsius(coldestTemperature(nightData).temp)} at{' '}
+                  {new Date(
+                    coldestTemperature(nightData).dt * 1000
+                  ).getHours() + ':00'}
                 </p>
                 <div className="reminder-checkbox">
                   <input
-                    onChange={changeIsReminding} // can have another function to set settings true or false when ticking?
+                    onChange={changeIsReminding}
                     type="checkbox"
                     id="reminder"
                   />
@@ -127,13 +122,12 @@ export default function BabyMode({ data }) {
                   <div className="reminder-select">
                     <label htmlFor="reminder-time">Reminder Time: </label>
                     <select
+                      value={settings.remindTime}
                       onChange={handleInput}
                       name="remindTime"
                       id="reminder-time"
                     >
-                      <option selected value={8}>
-                        8 pm
-                      </option>
+                      <option value={8}>8 pm</option>
                       <option value={21}>9 pm</option>
                       <option value={22}>10 pm</option>
                       <option value={23}>11 pm</option>

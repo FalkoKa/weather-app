@@ -34,5 +34,5 @@ export default function EmailTest({ settings, cold, hour }) {
     }, 990);
   }, []);
 
-  return <div className="email-test">{time}</div>;
+  return <div className="email-test"></div>;
 }
