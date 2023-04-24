@@ -13,18 +13,17 @@ export default function BabyMode({ data }) {
     remindTime: 20,
     email: 'falkokammel@gmx.de',
     name: 'Falko',
-    remind: isReminding, // is that possible?
+    remind: true,
   });
 
   const changeBabyMode = (e) => {
     setIsBabyMode(!isBabyMode);
-    setSettings(null);
     setIsSaved(false);
   };
 
   const changeIsReminding = (e) => {
     setIsReminding(!isReminding);
-    setSettings({ ...settings, remind: true }); // or need to do it this way?
+    setSettings({ ...settings, remind: true });
   };
 
   const handleSubmit = (e) => {
@@ -66,6 +65,8 @@ export default function BabyMode({ data }) {
     new Date(coldestTemperature(nightData).dt * 1000).getHours() + ' am'
   );
 
+  console.log(coldestTemperature(nightData));
+
   // drop by how many degrees
   console.log(
     tempDropBy(data, settings.bedtime, coldestTemperature(nightData).temp)
@@ -73,6 +74,7 @@ export default function BabyMode({ data }) {
 
   return (
     <div className="baby-mode">
+      {console.log(settings)}
       <EmailTest
         settings={settings}
         cold={kelvinToCelsius(coldestTemperature(nightData).temp)}
@@ -89,8 +91,13 @@ export default function BabyMode({ data }) {
               <div className="form-baby-mode">
                 <div className="bed-time-select">
                   <label htmlFor="bedtime">Bedtime: </label>
-                  <select onChange={handleInput} name="bedtime" id="bedtime">
-                    <option selected value="7 pm">
+                  <select
+                    value={settings.bedtime}
+                    onChange={handleInput}
+                    name="bedtime"
+                    id="bedtime"
+                  >
+                    <option defaultValue={7} value={7}>
                       7 pm
                     </option>
                     <option value={20}>8 pm</option>
@@ -137,8 +144,9 @@ export default function BabyMode({ data }) {
                   </div>
 
                   <div className="name">
-                    <label htmlFor="name">Enter your name</label>
+                    <label htmlFor="name">Name: </label>
                     <input
+                      value={settings.name}
                       onChange={handleInput}
                       name="name"
                       type="text"
@@ -148,8 +156,9 @@ export default function BabyMode({ data }) {
                   </div>
 
                   <div className="contact-info">
-                    <label htmlFor="email">Phone Number: </label>
+                    <label htmlFor="email">Email: </label>
                     <input
+                      value={settings.email}
                       onChange={handleInput}
                       name="email"
                       type="email"

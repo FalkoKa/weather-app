@@ -11,31 +11,23 @@ import { useLocation } from 'react-router-dom';
 import BabyMode from '../../components/BabyMode/BabyMode';
 
 const Weather = (props) => {
-  const { state } = useLocation();
-  const { city } = useGlobalContext();
-
   const [data, setData] = useState(null);
   const [latLng, setLatLng] = useState(null);
 
-  console.log(city);
-  console.log(state);
+  const { state } = useLocation();
+  const { cityWeather, setCityWeather } = useGlobalContext();
 
   useEffect(() => {
-    if (city === state) {
+    if (state) {
+      setCityWeather(state);
+    }
+  }, [state, setCityWeather]);
+
+  useEffect(() => {
+    if (cityWeather) {
       axios
         .get(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${state}&key=${process.env.REACT_APP_GOOGLE_API}`
-        )
-        .then((res) => {
-          setLatLng([
-            res.data.results[0].geometry.location.lat,
-            res.data.results[0].geometry.location.lng,
-          ]);
-        });
-    } else {
-      axios
-        .get(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GOOGLE_API}`
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${cityWeather}&key=${process.env.REACT_APP_GOOGLE_API}`
         )
         .then((res) => {
           setLatLng([
@@ -44,7 +36,7 @@ const Weather = (props) => {
           ]);
         });
     }
-  }, [city]);
+  }, [cityWeather]);
 
   useEffect(() => {
     if (latLng !== null) {
@@ -58,15 +50,10 @@ const Weather = (props) => {
     }
   }, [latLng]);
 
-  // useEffect(() => {
-  //   setData(dataSydney);
-  // }, []);
-
   return (
     <div className="weather">
       {data && <WeatherInfo data={data} />}
-      {/* <Map /> */}
-      <div>map</div>
+      <Map />
       {data && <WeatherDetails data={data} />}
       {data && <Forecast data={data} />}
       {data && <BabyMode data={data.hourly.slice(0, 24)} />}
