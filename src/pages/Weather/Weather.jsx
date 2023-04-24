@@ -3,12 +3,13 @@ import WeatherDetails from '../../components/WeatherDetails/WeatherDetails';
 import WeatherInfo from '../../components/WeatherInfo/WeatherInfo';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import dataSydney from "../../dataSydney.json";
+import dataSydney from '../../dataSydney.json';
 import './Weather.css';
 import Map from '../../components/Map/Map';
 import { useGlobalContext } from '../../hooks/context';
-import { useLocation } from 'react-router-dom';
 import BabyMode from '../../components/BabyMode/BabyMode';
+
+import { useLocation } from 'react-router-dom';
 
 const Weather = (props) => {
   const [data, setData] = useState(null);
@@ -19,24 +20,27 @@ const Weather = (props) => {
 
   useEffect(() => {
     if (state) {
-      setCityWeather(state);
+      setCityWeather((prevCity) => (prevCity === state ? '' : state));
     }
-  }, [state, setCityWeather]);
+  }, [state]);
 
   useEffect(() => {
-    if (cityWeather) {
+    const city = cityWeather || state;
+
+    if (city) {
       axios
         .get(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${cityWeather}&key=${process.env.REACT_APP_GOOGLE_API}`
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${process.env.REACT_APP_GOOGLE_API}`
         )
         .then((res) => {
           setLatLng([
             res.data.results[0].geometry.location.lat,
             res.data.results[0].geometry.location.lng,
           ]);
-        });
+        })
+        .catch((err) => console.log(err));
     }
-  }, [cityWeather]);
+  }, [cityWeather, state]);
 
   useEffect(() => {
     if (latLng !== null) {
@@ -49,6 +53,10 @@ const Weather = (props) => {
         });
     }
   }, [latLng]);
+
+  useEffect(() => {
+    setData(dataSydney);
+  }, []);
 
   return (
     <div className="weather">
