@@ -31,3 +31,5 @@ To use this app, you will need to:
 - OpenWeather API
 - Alan API
 - Windy API
+
+Note: This project will not be deployed due to the use of API keys which are not included in this repository for security reasons. If you would like to test the app, please follow the "Getting Started" instructions to run the app locally on your machine.
