@@ -1,0 +1,19 @@
+.forecast-day,
+.forecast-hour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.forecast-day h4 {
+  font-size: 1.125rem;
+}
+
+.forecast-day p {
+  font-weight: 700;
+}
+
+.weather-icon {
+  margin: 10px 0;
+}

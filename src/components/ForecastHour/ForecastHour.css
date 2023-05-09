@@ -1,0 +1,11 @@
+.forecast-hour span {
+  margin: 10px 0;
+}
+
+.forecast-hour h4 {
+  font-size: 1.25rem;
+}
+
+.forecast-hour p {
+  font-weight: 700;
+}

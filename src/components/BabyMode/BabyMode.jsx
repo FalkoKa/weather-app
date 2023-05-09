@@ -1,8 +1,8 @@
-import { Switch } from '@mui/material';
-import { useState } from 'react';
-import Reminder from '../Reminder/Reminder';
-import kelvinToCelsius from '../../utils/converter/kelvinToCelsius';
-import EmailTest from './email';
+import { Switch } from "@mui/material";
+import { useState } from "react";
+import Reminder from "../Reminder/Reminder";
+import kelvinToCelsius from "../../utils/converter/kelvinToCelsius";
+import EmailTest from "./email";
 
 export default function BabyMode({ data }) {
   const [isBabyMode, setIsBabyMode] = useState(false);
@@ -11,8 +11,8 @@ export default function BabyMode({ data }) {
   const [settings, setSettings] = useState({
     bedtime: 19,
     remindTime: 20,
-    email: '',
-    name: '',
+    email: "",
+    name: "",
     remind: false,
   });
 
@@ -51,21 +51,14 @@ export default function BabyMode({ data }) {
   };
 
   const tempDropBy = (data, bedtime, coldestTemp) => {
-    console.log(bedtime);
     let tempAtBedtime = data.filter(
       (hour) => new Date(hour.dt * 1000).getHours() === bedtime
     )[0];
-    console.log('tempatbedtime');
-    console.log(tempAtBedtime);
+
     return `${(tempAtBedtime.temp - 273.15 - (coldestTemp - 273.15)).toFixed(
       2
     )} °C`;
   };
-
-  // drop by how many degrees
-  // console.log(
-  //   tempDropBy(data, settings.bedtime, coldestTemperature(nightData).temp)
-  // );
 
   return (
     <div className="baby-mode">
@@ -101,12 +94,12 @@ export default function BabyMode({ data }) {
                 </div>
 
                 <p>
-                  coldest temperature tonight will drop by{' '}
+                  coldest temperature tonight will drop by{" "}
                   {tempDropBy(data, 19, coldestTemperature(nightData).temp)} to
-                  just {kelvinToCelsius(coldestTemperature(nightData).temp)} at{' '}
+                  just {kelvinToCelsius(coldestTemperature(nightData).temp)} at{" "}
                   {new Date(
                     coldestTemperature(nightData).dt * 1000
-                  ).getHours() + ':00'}
+                  ).getHours() + ":00"}
                 </p>
                 <div className="reminder-checkbox">
                   <input

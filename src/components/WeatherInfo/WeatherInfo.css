@@ -1,1 +1,23 @@
+.weather-info__header h1 {
+  font-size: 3.125rem;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
 
+.weather-info__body {
+  margin: 20px 0;
+}
+
+.weather-info__body span {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.weather-info__body p {
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.weather-info__footer h2 {
+  font-size: 3.125rem;
+}
