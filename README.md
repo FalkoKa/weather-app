@@ -1,3 +1,7 @@
+![homepage](https://imgur.com/HbhUuhZ)
+
+![weather page](https://imgur.com/1NRUExJ)
+
 # Weather App
 
 This is a Weather App that allows users to add locations to their watch list and get the current temperature. The app also includes a real-time map that displays the wind, temperature, and pressure for the user's current location. Additionally, users can add a new location by voice command or ask for the weather in a specific location.
