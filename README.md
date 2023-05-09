@@ -1,6 +1,6 @@
-![homepage](https://imgur.com/HbhUuhZ)
+![homepage](https://i.imgur.com/HbhUuhZ.png)
 
-![weather page](https://imgur.com/1NRUExJ)
+![weather page](https://i.imgur.com/1NRUExJ.png)
 
 # Weather App
 
